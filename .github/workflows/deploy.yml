@@ -16,8 +16,13 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Setup Git config
+        run: |
+          git config user.name  ${{ secrets.GIT_NANE }}
+          git config user.email ${{ secerts.GIT_EMAIL }}
+
       - name: Install packages
-        run: npm install
+        run: npm install -g yarn && yarn install
 
       - name: Run a deploy command
-        run: npm run deploy
+        run: yarn run deploy
